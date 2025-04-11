@@ -1,0 +1,40 @@
+# Ignore node_modules and dependency files
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore build files and temporary directories
+.next
+out
+dist
+.DS_Store
+
+# Ignore logs and temporary files
+logs
+*.log
+*.log.*
+*.swp
+*.swo
+*.swn
+*.swm
+
+# Ignore Docker and Git-related files
+Dockerfile
+docker-compose.yml
+.git
+.gitignore
+
+# Ignore VS Code and editor files
+.vscode
+.idea
+*.bak
+*.cache
+
+# Ignore coverage and test reports
+coverage
+jest.config.js
+jest.setup.js
+test-results

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://tools.ashishkumarkhatri.com.np
+
+# Sitemaps
+Sitemap: https://tools.ashishkumarkhatri.com.np/sitemap.xml
