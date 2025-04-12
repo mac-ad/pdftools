@@ -86,7 +86,7 @@ const Footer = () => {
           </motion.div>
         </motion.div>
 
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -108,7 +108,7 @@ const Footer = () => {
               {social.icon}
             </motion.a>
           ))}
-        </div>
+        </div> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

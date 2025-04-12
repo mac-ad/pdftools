@@ -9,6 +9,10 @@ import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import BgDecorativeBalls from "@/components/landing/BgDecorativeBalls";
 import Footer from "@/components/Footer";
+import { SimpleFeatureCard } from "@/components/landing/SimpleFeatureCard";
+import { FileText, FilePlus, FileDown, Scissors, Lock, Brain } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 export default function Home() {
   // Refs to spy on sections like a creepy neighbor
@@ -24,6 +28,7 @@ export default function Home() {
 
   const containerRef = useRef(null);
 
+
   return (
     <main className="bg-white dark:bg-black min-h-screen overflow-hidden">
       <div className="relative" ref={containerRef}>
@@ -37,19 +42,20 @@ export default function Home() {
          
           {/* Hero section - where dreams come true (or at least PDFs get fixed) */}
           <motion.div 
-            className="mb-30"
+            className="mb-40"
           >
             <HeroSection />
           </motion.div>
 
-          {/* Features that'll knock your socks off (please keep your socks on) */}
-          <motion.div 
-            ref={featuresRef} 
-            className="mb-48"
-            transition={{ duration: 0.2 }}
+          {/* Features Grid */}
+          <motion.section 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-24"
+            ref={featuresRef}
           >
             <Features isFeaturesInView={isFeaturesInView} />
-          </motion.div>
+          </motion.section>
           
           {/* Security so tight, even we can't break in (not that we've tried... much) */}
           <motion.div 

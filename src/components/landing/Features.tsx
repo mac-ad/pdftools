@@ -1,72 +1,111 @@
 import { motion } from "framer-motion";
 import { FeatureCard } from "./FeatureCard";
-import { pdfTools } from "@/constants/tools";
+import { SimpleFeatureCard } from "./SimpleFeatureCard";
+import { FileText, FilePlus, FileDown, Scissors, Lock, Brain } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { Button } from "../ui/Button";
+import { pdfTools } from "@/constants/tools";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface FeaturesProps {
-  isFeaturesInView: boolean; // Because apparently we need to track if you can see things now
+  isFeaturesInView: boolean;
 }
 
+
+const FEATURES_LIMIT = 6;
+
 export function Features({ isFeaturesInView }: FeaturesProps) {
+  
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const router = useRouter();
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
-    <motion.section 
-      initial={{ opacity: 0 }} // Start invisible, how original
+    <motion.section
+      initial={{ opacity: 0 }}
       animate={isFeaturesInView ? { opacity: 1 } : { opacity: 0 }}
       className="mt-32 relative text-center mx-auto"
     >
-      <motion.h2 
-        initial={{ y: 20 }}
-        animate={isFeaturesInView ? { y: 0 } : { y: 20 }}
-        className="text-3xl sm:text-4xl font-bold mb-16 text-foreground dark:text-foreground/90 max-w-[30ch] mx-auto"
-      >
-        Yet Another Collection of PDF Tools (Like You Needed More)
-      </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {pdfTools.map((feature, index) => (
-          <div key={feature.title} className={
-            cn(
-                "relative",
-                !feature.active && "opacity-80 pointer-events-none"
-            )
-          }>
-           
-            <Link 
-              href={feature.active ? feature.link : '#'} 
-              key={feature.title} 
-              className={cn(
-                "block h-full aspect-[16/9]",
-                !feature.active && "cursor-not-allowed"
-              )}
-            >
-              
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isFeaturesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ 
-                  delay: index * 0.2,
-                  duration: 0.5,
-                  ease: "easeOut"
-                }}
-                whileHover={feature.active ? { 
-                  scale: 1.05,
-                  transition: { duration: 0.2 }
-                } : {}}
-                className="h-full"
-              >
-                {!feature.active && (
-                    <Button variant="primary" className="absolute bottom-2 right-2 z-10 text-xs p-2 px-4 bg-primary/90">
-                        Coming Soon
-                    </Button>
-              )}
-                <FeatureCard {...feature} delay={0} />
-              </motion.div>
-            </Link>
-          </div>
-        ))}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground dark:text-foreground/90">
+          Quick Tools
+        </h2>
+        <p className="text-lg text-foreground/60 dark:text-foreground/70 max-w-2xl mx-auto">
+          Essential PDF tools at your fingertips
+        </p>
       </div>
+      
+      <motion.div 
+        className="grid grid-cols-2 md:grid-cols-3 gap-4"
+        variants={container}
+        initial="hidden"
+        animate={isFeaturesInView ? "show" : "hidden"}
+      >
+        {pdfTools?.slice(0, FEATURES_LIMIT)?.map((feature) => (
+          <motion.div
+            key={feature.title}
+            variants={item}
+          >
+            <SimpleFeatureCard
+              {...feature}
+              delay={0}
+              footer={
+                <Button variant={feature.active ? "outline" : "default"} 
+                  disabled = {!feature.active }
+                className={
+                  cn(
+                    "group   py-1",
+                    feature.active ? "hover:bg-primary/10 dark:hover:bg-primary/10" : "hover:bg-transparent dark:hover:bg-transparent"
+                  )
+                } onClick={() =>  feature.active ? router.push(feature.link) : null}>
+                  {
+                    feature.active ? feature.action?.text : "Coming soon"
+                  }
+                </Button>
+              }
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <motion.div 
+        className="text-center mt-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isFeaturesInView ? { 
+          opacity: 1, 
+          y: 0,
+          transition: {
+            delay: 0.3 + (FEATURES_LIMIT * 0.2) // Delay = initial delay + stagger time for all cards
+          }
+        } : { opacity: 0, y: 20 }}
+      >
+        <Link href="/features">
+          <Button variant="outline" className="group">
+            View All Features
+            <motion.span
+              className="inline-block ml-2"
+              whileHover={{ x: 5 }}
+            >
+              →
+            </motion.span>
+          </Button>
+        </Link>
+      </motion.div>
     </motion.section>
   );
 }
