@@ -9,7 +9,7 @@ interface FeatureCardProps {
   footer?: React.ReactNode;
 }
 
-export function FeatureCard({ icon: Icon, title, description, delay = 0, className, footer }: FeatureCardProps) {
+export function FeatureCard({ icon: Icon, title, description, className, footer }: FeatureCardProps) {
   return (
     <div
       className={cn("p-6 rounded-2xl border border-secondary/20 dark:border-secondary/10 bg-gray-50 dark:bg-zinc-900 shadow-lg hover:shadow-xl transition-all duration-300 relative group h-full overflow-hidden flex flex-col", className)}

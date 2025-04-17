@@ -1,9 +1,8 @@
 "use client"
 
-import { Bug, Github, Twitter, Coffee, Heart } from "lucide-react"
+import { Bug, Heart } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { useState } from "react"
 
 const Header = () => {
 

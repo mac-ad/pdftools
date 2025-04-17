@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
-import { Zap, Sparkles } from "lucide-react";
+import { Zap } from "lucide-react";
 import Link from "next/link";
 
 export function HeroSection() {
@@ -20,17 +20,17 @@ export function HeroSection() {
     show: { opacity: 1, y: 0 }
   };
 
-  const bounce = {
-    initial: { y: 0 },
-    animate: {
-      y: [-5, 5],
-      transition: {
-        duration: 1.5,
-        repeat: Infinity,
-        repeatType: "reverse"
-      }
-    }
-  };
+  // const bounce = {
+  //   initial: { y: 0 },
+  //   animate: {
+  //     y: [-5, 5],
+  //     transition: {
+  //       duration: 1.5,
+  //       repeat: Infinity,
+  //       repeatType: "reverse"
+  //     }
+  //   }
+  // };
 
   return (
     <motion.div
@@ -59,9 +59,9 @@ export function HeroSection() {
         className="text-lg sm:text-xl text-secondary-light/90 dark:text-secondary-light/80 max-w-2xl mx-auto leading-relaxed"
         variants={item}
       >
-        🎉 Because the world TOTALLY needed another PDF tool, right? We're like that friend who shows up 
-        uninvited to the party but brings really good snacks. Sure, we'll merge your PDFs, shrink them down 
-        to size (like your ex's ego), and split them faster than your last relationship. No signup required - 
+        🎉 Because the world TOTALLY needed another PDF tool, right? We&apos;re like that friend who shows up 
+        uninvited to the party but brings really good snacks. Sure, we&apos;ll merge your PDFs, shrink them down 
+        to size (like your ex&apos;s ego), and split them faster than your last relationship. No signup required - 
         because apparently, we hate collecting user data and making money. 🤷‍♂️
       </motion.p>
       <motion.div

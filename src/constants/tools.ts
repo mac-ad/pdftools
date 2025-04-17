@@ -1,4 +1,4 @@
-import { Plus, ArrowLeftRight, ChevronDown, FileText, FilePlus, FileDown, Scissors, Lock, Brain, FileSearch, FileSignature, FileImage, FileCode, FileCheck, Settings, LucideIcon } from "lucide-react";
+import {  FileText, FilePlus, FileDown, Scissors, Lock, Brain, FileSearch, FileSignature, FileImage, FileCode, FileCheck, Settings, LucideIcon } from "lucide-react";
 
 const categoryIds = {
   essential: 'essential',
@@ -47,7 +47,7 @@ export const pdfTools: PdfTool[] = [
       text: 'Convert Now'
     },
     link: '/convert',
-    active: false,
+    active: true,
     category: categoryIds.essential
   },
   {
@@ -86,7 +86,7 @@ export const pdfTools: PdfTool[] = [
       text: 'Secure Now'
     },
     link: '/protect',
-    active: false,
+    active: true,
     category: categoryIds.security
   },
   {

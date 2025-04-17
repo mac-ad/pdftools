@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://tools.ashishkumarkhatri.com.np</loc><lastmod>2025-04-11T19:05:41.097Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://tools.ashishkumarkhatri.com.np/merge</loc><lastmod>2025-04-11T19:05:41.097Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tools.macad.dev/split</loc><lastmod>2025-04-12T06:21:09.306Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tools.macad.dev</loc><lastmod>2025-04-12T06:21:09.306Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tools.macad.dev/features</loc><lastmod>2025-04-12T06:21:09.306Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://tools.macad.dev/merge</loc><lastmod>2025-04-12T06:21:09.306Z</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

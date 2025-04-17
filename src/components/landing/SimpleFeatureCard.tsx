@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { footer } from "framer-motion/client";
 
 interface SimpleFeatureCardProps {
   icon: LucideIcon;

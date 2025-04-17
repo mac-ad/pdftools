@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import { FeatureCard } from "./FeatureCard";
 import { SimpleFeatureCard } from "./SimpleFeatureCard";
-import { FileText, FilePlus, FileDown, Scissors, Lock, Brain } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/Button";
 import { pdfTools } from "@/constants/tools";
@@ -11,7 +9,6 @@ import { cn } from "@/lib/utils";
 interface FeaturesProps {
   isFeaturesInView: boolean;
 }
-
 
 const FEATURES_LIMIT = 6;
 
@@ -51,7 +48,7 @@ export function Features({ isFeaturesInView }: FeaturesProps) {
       </div>
       
       <motion.div 
-        className="grid grid-cols-2 md:grid-cols-3 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
         variants={container}
         initial="hidden"
         animate={isFeaturesInView ? "show" : "hidden"}
@@ -60,6 +57,7 @@ export function Features({ isFeaturesInView }: FeaturesProps) {
           <motion.div
             key={feature.title}
             variants={item}
+            className = "transform rotate-5"
           >
             <SimpleFeatureCard
               {...feature}

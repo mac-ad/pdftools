@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Scissors, Upload, AlertCircle, ChevronDown, Eye } from "lucide-react";
+import { Scissors, Upload, AlertCircle, Eye } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";

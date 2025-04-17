@@ -9,10 +9,6 @@ import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import BgDecorativeBalls from "@/components/landing/BgDecorativeBalls";
 import Footer from "@/components/Footer";
-import { SimpleFeatureCard } from "@/components/landing/SimpleFeatureCard";
-import { FileText, FilePlus, FileDown, Scissors, Lock, Brain } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 
 export default function Home() {
   // Refs to spy on sections like a creepy neighbor

@@ -2,15 +2,13 @@
 
 import { FeatureCard } from "@/components/landing/FeatureCard";
 import { motion } from "framer-motion";
-import { toolsCategories, pdfTools, PdfTool } from "@/constants/tools";
+import { toolsCategories, pdfTools } from "@/constants/tools";
 import { Button } from "@/components/ui/Button";
-import { Link } from "lucide-react";
 import { useRouter } from "next/navigation";
-export default function FeaturesPage() {
- 
-  console.log(pdfTools,toolsCategories);
 
-    const router = useRouter();
+export default function FeaturesPage() {
+
+  const router = useRouter();
 
   return (
     <main className="bg-white dark:bg-black min-h-screen py-24">
@@ -25,7 +23,7 @@ export default function FeaturesPage() {
           </h1>
           <p className="text-lg text-foreground/60 dark:text-foreground/70 max-w-2xl mx-auto">
             Discover our comprehensive suite of PDF tools designed to handle all your document needs.
-            From basic operations to advanced features, we've got you covered.
+            From basic operations to advanced features, we&apos;ve got you covered.
           </p>
         </motion.div>
 
