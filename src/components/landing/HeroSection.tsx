@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { MIXPANEL_EVENTS } from "@/constants/mixpanel";
 import { useMixpanel } from "@/Context/MixpanelProvider";
 import { motion } from "framer-motion";
-import { Zap } from "lucide-react";
+import { Bug, Zap } from "lucide-react";
 import Link from "next/link";
 
 export function HeroSection() {
@@ -50,14 +50,16 @@ export function HeroSection() {
         >
           Oh Look,{" "}
           <motion.span
-            className="text-primary dark:text-primary/90 inline-block"
+            className="text-primary dark:text-primary/90 inline-flex items-center justify-center gap-2"
             variants={item}
             whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
           >
-            Yet Another
+            <span>
+            Yet Another</span> 
           </motion.span>{" "}
           PDF Tool! 🙄
         </motion.h1>
+        <Bug className="w-12 h-12 animate-spin text-primary dark:text-primary/90 mx-auto my-10" />
       </motion.div>
       <motion.p 
         className="text-lg sm:text-xl text-secondary-light/90 dark:text-secondary-light/80 max-w-2xl mx-auto leading-relaxed"

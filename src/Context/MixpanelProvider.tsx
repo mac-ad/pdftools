@@ -31,8 +31,12 @@ const MixpanelProvider = ({ children }: { children: React.ReactNode }) => {
     }, []);
 
     useEffect(() => {
-        if (user) {
-            mixpanel.identify(user.name);
+        try{
+            if (user) {
+                mixpanel.identify(user.name);
+            }
+        } catch (error) {
+            console.error('Error identifying user in Mixpanel:', error);
         }
     }, [user]);
 

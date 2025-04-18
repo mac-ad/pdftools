@@ -13,6 +13,9 @@ const Header = () => {
               <div className="flex items-center justify-between h-16">
                 <div className="flex items-center gap-2">
                   <Link href="/" className="text-2xl font-bold text-foreground flex items-center gap-2">
+                    
+                    <img src="/favicon.ico" alt="PDF Toolbox" className="w-5 h-5" />
+                    <span className="text-sm font-medium">Yet Another PDF Tool</span>
                     <motion.div
                       animate={{
                         rotate: [0, 360]
@@ -25,7 +28,6 @@ const Header = () => {
                     >
                       <Bug className="w-5 h-5" />
                     </motion.div>
-                    <span className="text-sm font-medium">Yet Another PDF Tool</span>
                   </Link>
                 </div>
 
