@@ -3,12 +3,14 @@
 import { HeroSection } from "@/components/landing/HeroSection";
 import { CTASection } from "@/components/landing/CTASection";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Security } from "@/components/landing/Security";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import BgDecorativeBalls from "@/components/landing/BgDecorativeBalls";
 import Footer from "@/components/Footer";
+import SuggestFeatureForm from "@/components/landing/SuggestFeatureForm";
+import { useGlobal } from "@/Context/GlobalContext";
 
 export default function Home() {
   // Refs to spy on sections like a creepy neighbor
@@ -24,6 +26,7 @@ export default function Home() {
 
   const containerRef = useRef(null);
 
+  const { showSuggestFeatureForm } = useGlobal();
 
   return (
     <main className="bg-white dark:bg-black min-h-screen overflow-hidden">
@@ -100,6 +103,13 @@ export default function Home() {
             <Footer />
           </motion.div>
         </motion.div>
+
+      {/* Suggest Feature Form - Where dreams come true (terms and conditions apply) */}
+      {
+        showSuggestFeatureForm && (
+          <SuggestFeatureForm />
+        )
+      }
       </div>
     </main>
   );
