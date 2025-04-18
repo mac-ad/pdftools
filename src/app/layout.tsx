@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Providers from "@/Context/Providers";
 import { Toaster } from "sonner";
-import Script from "next/script";
 import Analytics from "@/components/Analytics/Analytics";
 
 const geistSans = Geist({

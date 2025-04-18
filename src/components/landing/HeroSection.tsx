@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/Button";
+import { MIXPANEL_EVENTS } from "@/constants/mixpanel";
+import { useMixpanel } from "@/Context/MixpanelProvider";
 import { motion } from "framer-motion";
 import { Zap } from "lucide-react";
 import Link from "next/link";
@@ -31,6 +33,8 @@ export function HeroSection() {
   //     }
   //   }
   // };
+
+  const {sendEvent} = useMixpanel();
 
   return (
     <motion.div
@@ -76,6 +80,7 @@ export function HeroSection() {
             icon={<Zap className="w-4 h-4" />}
             iconPosition="left"
             className="group"
+            onClick={() => sendEvent(MIXPANEL_EVENTS.HERO_CTA_CLICK)}
           >
             <motion.span
               initial="initial"

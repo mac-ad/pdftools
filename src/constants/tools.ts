@@ -47,7 +47,7 @@ export const pdfTools: PdfTool[] = [
       text: 'Convert Now'
     },
     link: '/convert',
-    active: true,
+    active: false,
     category: categoryIds.essential
   },
   {
@@ -86,7 +86,7 @@ export const pdfTools: PdfTool[] = [
       text: 'Secure Now'
     },
     link: '/protect',
-    active: true,
+    active: false,
     category: categoryIds.security
   },
   {

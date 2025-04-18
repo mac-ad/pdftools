@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { FileDown, Upload, AlertCircle, Eye, FileType, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { PDFDocument } from "pdf-lib";
+import { useRouter } from "next/navigation";
 
 type ConversionFormat = 'word' | 'excel' | 'powerpoint' | 'image' | 'html' | 'text';
 
@@ -22,6 +22,12 @@ export default function ConvertPDFPage() {
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState<ConversionFormat | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+   router.push("/")
+  }, []);
 
   const formatOptions: FormatOption[] = [
     {

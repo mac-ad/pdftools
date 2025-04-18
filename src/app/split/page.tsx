@@ -7,6 +7,8 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { PDFDocument } from "pdf-lib";
 import JSZip from 'jszip';
+import { useMixpanel } from "@/Context/MixpanelProvider";
+import { MIXPANEL_EVENTS } from "@/constants/mixpanel";
 
 export default function SplitPDFPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -14,6 +16,8 @@ export default function SplitPDFPage() {
   const [splitMode, setSplitMode] = useState<'all' | 'range' | 'custom'>('all');
   const [pageRange, setPageRange] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+
+  const {sendEvent} = useMixpanel();
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -38,12 +42,15 @@ export default function SplitPDFPage() {
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile?.type === "application/pdf") {
+      sendEvent(MIXPANEL_EVENTS.FILE_SELECTED, { file: selectedFile.name });
       setFile(selectedFile);
     }
   };
 
   const previewPDF = () => {
     if (!file) return;
+
+    sendEvent(MIXPANEL_EVENTS.FILE_PREVIEWED, { file: file.name });
     
     // Create object URL for preview
     const url = URL.createObjectURL(file);
@@ -60,7 +67,7 @@ export default function SplitPDFPage() {
 
     try {
       setIsProcessing(true);
-      
+      sendEvent(MIXPANEL_EVENTS.TOOL_START, { tool: "Split", file: file.name });
       // Read the PDF file
       const fileBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(fileBuffer);
@@ -109,9 +116,10 @@ export default function SplitPDFPage() {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-
+      sendEvent(MIXPANEL_EVENTS.TOOL_SUCCESS, { tool: "Split", file: file.name });
     } catch (error) {
       console.error('Error splitting PDF:', error);
+      sendEvent(MIXPANEL_EVENTS.TOOL_ERROR, { tool: "Split", file: file.name });
     } finally {
       setIsProcessing(false);
     }

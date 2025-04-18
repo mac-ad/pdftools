@@ -5,10 +5,14 @@ import { motion } from "framer-motion";
 import { toolsCategories, pdfTools } from "@/constants/tools";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
+import { useMixpanel } from "@/Context/MixpanelProvider";
+import { MIXPANEL_EVENTS } from "@/constants/mixpanel";
 
 export default function FeaturesPage() {
 
   const router = useRouter();
+
+  const {sendEvent} = useMixpanel();
 
   return (
     <main className="bg-white dark:bg-black min-h-screen py-24">
@@ -49,7 +53,15 @@ export default function FeaturesPage() {
                     delay={index * 0.1}
                     className={tool.active ? "" : "opacity-70"}
                     footer={
-                        <Button variant={tool.active ? "outline" : "default"} className="group ml-auto mt-10 z-20" disabled={!tool.active} onClick={() => router.push(tool.link)}>
+                        <Button 
+                          variant={tool.active ? "outline" : "default"} 
+                          className="group ml-auto mt-10 z-20" 
+                          disabled={!tool.active} 
+                          onClick={() => {
+                            router.push(tool.link);
+                            sendEvent(MIXPANEL_EVENTS.FEATURE_CLICK, { tool: tool.title });
+                          }}
+                        >
                             {tool.active ? tool?.action?.text : "Coming soon"}
                         </Button>
                     }

@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react'
+import MixpanelProvider from './MixpanelProvider';
+import UserProvider from './UserProvider';
 
 const Providers = ({children}: {children: React.JSX.Element}) => {
   const pathname = usePathname();
@@ -16,7 +18,11 @@ const Providers = ({children}: {children: React.JSX.Element}) => {
 
   return (
    <>
-    {children}
+    <UserProvider> 
+      <MixpanelProvider>
+        {children}
+      </MixpanelProvider>
+    </UserProvider>
    </>
   )
 }

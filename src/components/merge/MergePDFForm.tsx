@@ -5,6 +5,8 @@ import { PDFDocument } from 'pdf-lib';
 import { motion, useInView } from 'framer-motion';
 import { FileText, Loader2, X, MoveDown, MoveUp, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { useMixpanel } from '@/Context/MixpanelProvider';
+import { MIXPANEL_EVENTS } from '@/constants/mixpanel';
 
 interface PDFFile {
   file: File;
@@ -18,6 +20,8 @@ export default function MergePDFForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [mergeProgress, setMergeProgress] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+
+  const {sendEvent} = useMixpanel();
 
   const handleDrop = async (e: React.DragEvent) => {
     e.preventDefault();
@@ -76,7 +80,8 @@ export default function MergePDFForm() {
     try {
       setIsLoading(true);
       setMergeProgress(0);
-      
+      sendEvent(MIXPANEL_EVENTS.TOOL_START, { tool: "Merge", file: files?.map((file) => file.file.name).join(', ') });
+
       const mergedPdf = await PDFDocument.create();
       let processedPages = 0;
 
@@ -101,10 +106,11 @@ export default function MergePDFForm() {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-      
+      sendEvent(MIXPANEL_EVENTS.TOOL_SUCCESS, { tool: "Merge", file: files?.map((file) => file.file.name).join(', ') });
     } catch (err) {
       setError('Error merging PDFs. Please try again.');
       console.error(err);
+      sendEvent(MIXPANEL_EVENTS.TOOL_ERROR, { tool: "Merge", file: files?.map((file) => file.file.name).join(', ') });
     } finally {
       setIsLoading(false);
       setMergeProgress(0);
