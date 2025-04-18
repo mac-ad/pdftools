@@ -59,7 +59,7 @@ export function HeroSection() {
           </motion.span>{" "}
           PDF Tool! 🙄
         </motion.h1>
-        <Bug className="w-12 h-12 animate-spin text-primary dark:text-primary/90 mx-auto my-10" />
+        {/* <Bug className="w-12 h-12 animate-spin text-primary dark:text-primary/90 mx-auto my-10" /> */}
       </motion.div>
       <motion.p 
         className="text-lg sm:text-xl text-secondary-light/90 dark:text-secondary-light/80 max-w-2xl mx-auto leading-relaxed"
