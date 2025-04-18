@@ -51,7 +51,8 @@ export default function WatermarkPdfForm() {
       setSelectedFile(file);
       sendEvent(MIXPANEL_EVENTS.FILE_SELECTED, { 
         type: "pdf", 
-        size: file.size 
+        size: file.size ,
+        name: file.name
       });
     }
   };
@@ -138,6 +139,10 @@ export default function WatermarkPdfForm() {
     if (!selectedFile) return;
 
     setIsProcessing(true);
+    sendEvent(MIXPANEL_EVENTS.TOOL_START, { 
+      tool: "watermark",
+      type: formData.type
+    });
     try {
       const pdfDoc = await PDFDocument.load(await selectedFile.arrayBuffer());
       const pages = pdfDoc.getPages();
@@ -149,12 +154,16 @@ export default function WatermarkPdfForm() {
 
       await saveAndDownloadPdf(pdfDoc);
       
-      sendEvent(MIXPANEL_EVENTS.TOOL_CLICK, { 
+      sendEvent(MIXPANEL_EVENTS.TOOL_COMPLETE, { 
         tool: "watermark",
         type: formData.type
       });
     } catch (error) {
       console.error("Error processing watermark:", error);
+      sendEvent(MIXPANEL_EVENTS.TOOL_ERROR, { 
+        tool: "watermark",
+        type: formData.type,
+      });
     } finally {
       setIsProcessing(false);
     }
@@ -198,6 +207,12 @@ export default function WatermarkPdfForm() {
     const modifiedPdfBytes = await pdfDoc.save();
     const blob = new Blob([modifiedPdfBytes], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
+
+    sendEvent(MIXPANEL_EVENTS.FILE_DOWNLOADED, { 
+      tool: "watermark",
+      type: formData.type,
+      fileSize: selectedFile?.size
+    });
     
     const link = document.createElement('a');
     link.href = url;
