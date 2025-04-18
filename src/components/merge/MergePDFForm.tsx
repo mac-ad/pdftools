@@ -173,6 +173,7 @@ export default function MergePDFForm() {
                   variant="ghost"
                   disabled={index === 0}
                   onClick={() => moveFile(index, 'up')}
+                  className="p-0"
                 >
                   <MoveUp className="h-4 w-4" />
                 </Button>
@@ -180,12 +181,15 @@ export default function MergePDFForm() {
                   variant="ghost"
                   disabled={index === files.length - 1}
                   onClick={() => moveFile(index, 'down')}
+                  className="p-0"
+
                 >
                   <MoveDown className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="ghost"
                   onClick={() => removeFile(index)}
+                  className="p-0"
                 >
                   <X className="h-4 w-4" />
                 </Button>

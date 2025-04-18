@@ -1,4 +1,4 @@
-import {  FileText, FilePlus, FileDown, Scissors, Lock, Brain, FileSearch, FileSignature, FileImage, FileCode, FileCheck, Settings, LucideIcon } from "lucide-react";
+import {  FileText, FilePlus, FileDown, Scissors, Lock, Brain, FileSearch, FileSignature, FileImage, FileCode, FileCheck, Settings, LucideIcon, Stamp } from "lucide-react";
 
 const categoryIds = {
   essential: 'essential',
@@ -47,7 +47,7 @@ export const pdfTools: PdfTool[] = [
       text: 'Convert Now'
     },
     link: '/convert',
-    active: false,
+    active: true,
     category: categoryIds.essential
   },
   {
@@ -179,6 +179,19 @@ export const pdfTools: PdfTool[] = [
     link: '/batch',
     active: false,
     category: categoryIds.utilities
+  },
+  {
+    id: 'watermark',
+    icon: Stamp,
+    title: 'Add Watermark',
+    description: 'Add text or image watermarks to your PDFs. Customize position, opacity and other properties.',
+    smallDescription: 'Add watermarks to PDFs',
+    action: {
+      text: 'Add Watermark'
+    },
+    link: '/watermark',
+    active: true,
+    category: categoryIds.content
   }
 ] as const;
 

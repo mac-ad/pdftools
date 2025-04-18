@@ -8,6 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconPosition?: "left" | "right"; 
   isLoading?: boolean;
   loadingText?: string;
+  href?: string;
 }
 
 export function Button({ 
@@ -19,6 +20,7 @@ export function Button({
   isLoading = false,
   loadingText,
   disabled,
+  href,
   ...props 
 }: ButtonProps) {
   return (

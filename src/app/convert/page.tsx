@@ -26,7 +26,7 @@ export default function ConvertPDFPage() {
   const router = useRouter();
 
   useEffect(() => {
-   router.push("/")
+  //  router.push("/")
   }, []);
 
   const formatOptions: FormatOption[] = [
@@ -51,27 +51,27 @@ export default function ConvertPDFPage() {
       icon: <FileType className="w-6 h-6" />,
       extensions: ['.pptx', '.ppt']
     },
-    {
-      id: 'image',
-      title: 'Image',
-      description: 'Convert to JPG or PNG format',
-      icon: <FileType className="w-6 h-6" />,
-      extensions: ['.jpg', '.png']
-    },
-    {
-      id: 'html',
-      title: 'HTML',
-      description: 'Convert to web page format',
-      icon: <FileType className="w-6 h-6" />,
-      extensions: ['.html']
-    },
-    {
-      id: 'text',
-      title: 'Plain Text',
-      description: 'Extract text content',
-      icon: <FileType className="w-6 h-6" />,
-      extensions: ['.txt']
-    }
+    // {
+    //   id: 'image',
+    //   title: 'Image',
+    //   description: 'Convert to JPG or PNG format',
+    //   icon: <FileType className="w-6 h-6" />,
+    //   extensions: ['.jpg', '.png']
+    // },
+    // {
+    //   id: 'html',
+    //   title: 'HTML',
+    //   description: 'Convert to web page format',
+    //   icon: <FileType className="w-6 h-6" />,
+    //   extensions: ['.html']
+    // },
+    // {
+    //   id: 'text',
+    //   title: 'Plain Text',
+    //   description: 'Extract text content',
+    //   icon: <FileType className="w-6 h-6" />,
+    //   extensions: ['.txt']
+    // }
   ];
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -230,21 +230,23 @@ export default function ConvertPDFPage() {
           >
             <div className="border-2 border-secondary/20 dark:border-secondary/10 rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-4">Select Output Format</h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3">
                 {formatOptions.map((format) => (
                   <button
                     key={format.id}
                     onClick={() => setSelectedFormat(format.id)}
                     className={cn(
-                      "p-3 rounded-lg border text-left transition-all",
+                      "rounded-lg text-left transition-all p-3 border cursor-pointer",
                       selectedFormat === format.id
                         ? "border-primary bg-primary/5"
                         : "border-secondary/20 hover:border-primary/50"
                     )}
                   >
-                    <div className="flex items-center gap-2">
-                      {format.icon}
-                      <div>
+                    <div className="flex items-start gap-2">
+                      <div className=" text-lg  flex">
+                        {format.icon}
+                      </div>
+                      <div className = "">
                         <p className="font-medium">{format.title}</p>
                         <p className="text-xs text-foreground/60">{format.description}</p>
                       </div>

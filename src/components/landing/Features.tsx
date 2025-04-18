@@ -32,6 +32,13 @@ export function Features({ isFeaturesInView }: FeaturesProps) {
     show: { opacity: 1, y: 0 }
   };
 
+
+  const sortedTools = pdfTools.sort((a, b) => {
+    if (a.active && !b.active) return -1;
+    if (!a.active && b.active) return 1;
+    return a.title.localeCompare(b.title);
+  });
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -53,7 +60,7 @@ export function Features({ isFeaturesInView }: FeaturesProps) {
         initial="hidden"
         animate={isFeaturesInView ? "show" : "hidden"}
       >
-        {pdfTools?.slice(0, FEATURES_LIMIT)?.map((feature) => (
+        {sortedTools?.slice(0, FEATURES_LIMIT)?.map((feature) => (
           <motion.div
             key={feature.title}
             variants={item}
