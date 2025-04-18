@@ -25,7 +25,7 @@ const generateRandomName = () => {
   const adjectives = ['Happy', 'Lucky', 'Clever', 'Bright', 'Swift'];
   const nouns = ['Panda', 'Tiger', 'Eagle', 'Dolphin', 'Fox'];
   const randomNumber = Math.floor(Math.random() * 1000);
-  return `${adjectives[Math.floor(Math.random() * adjectives.length)]}${nouns[Math.floor(Math.random() * nouns.length)]}${randomNumber}`;
+  return `${adjectives[Math.floor(Math.random() * adjectives.length)]}${nouns[Math.floor(Math.random() * nouns.length)]}${randomNumber}${new Date().getTime()}`;
 };
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
