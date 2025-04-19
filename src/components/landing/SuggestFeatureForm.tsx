@@ -5,6 +5,8 @@ import { useGlobal } from "@/Context/GlobalContext";
 import { Button } from "@/components/ui/Button";
 import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useMixpanel } from "@/Context/MixpanelProvider";
+import { MIXPANEL_EVENTS } from "@/constants/mixpanel";
 
 const SuggestFeatureForm = () => {
 
@@ -12,6 +14,8 @@ const SuggestFeatureForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const { sendEvent } = useMixpanel();
 
   useEffect(() => {
 
@@ -35,6 +39,8 @@ const SuggestFeatureForm = () => {
       const email = formData.get('email');
       const feature = formData.get('feature');
 
+      sendEvent(MIXPANEL_EVENTS.SUGGESTION_BUTTON);
+
       const response = await fetch('https://script.google.com/macros/s/AKfycbxqJCqN7HlBssGde0H1tH1aKzl_HpPr2cjQ7BzCdGNmkhYs5LSoAvxnG36LpI4PEd-0/exec', {
         method: 'POST',
         body: formData,
@@ -45,12 +51,14 @@ const SuggestFeatureForm = () => {
       }
 
       setIsSuccess(true);
+      sendEvent(MIXPANEL_EVENTS.SUGGESTION_SUCCESS);
       setTimeout(() => {
         setShowSuggestFeatureForm(false);
       }, 2000);
 
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
+      sendEvent(MIXPANEL_EVENTS.SUGGESTION_ERROR);
     } finally {
       setIsLoading(false);
     }
