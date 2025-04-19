@@ -5,10 +5,14 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { useGlobal } from "@/Context/GlobalContext";
 import { Button } from "./ui/Button";
+import { useMixpanel } from "@/Context/MixpanelProvider";
+import { MIXPANEL_EVENTS } from "@/constants/mixpanel";
 
 const Header = () => {
 
   const { setShowSuggestFeatureForm } = useGlobal();
+
+  const { sendEvent } = useMixpanel();
 
   return (
     <header>
@@ -36,7 +40,9 @@ const Header = () => {
                 </div>
 
 
-                <Link href="https://forms.gle/amegaQbkFyGLv6tb9" target="_blank">
+                <Link href="https://forms.gle/amegaQbkFyGLv6tb9" target="_blank" onClick={() => {
+                  sendEvent(MIXPANEL_EVENTS.SUGGESTION_BUTTON);
+                }}> 
                   <Button 
                       variant="primary"
                       icon={<MessageSquarePlus className="w-4 h-4" />}
